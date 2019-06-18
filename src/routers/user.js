@@ -10,7 +10,8 @@ const handleUserRouter = (req,res) => {
         return result.then(data=>{
             if(data.username){
                 //操作cookie
-                res.setHeader('Set-Cookie',`username=${data.username};path=/`)
+                res.setHeader('Set-Cookie',`username=${data.username};path=/;httpOnly`)
+                //httpOnly 只允许后端修改cookie
                 return new SuccessModel()
             }
             return new ErrorModel('登录失败')

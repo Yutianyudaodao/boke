@@ -18,8 +18,6 @@ const handleBlogRouter = (req,res) => {
 
     //获取博客详情
     if(method === 'POST' && req.path === '/api/blog/detail'){
-        // const data = getDetail(id)
-        // return new SuccessModel(data)
         const result = getDetail(id)
         if(result){
             return result.then(data => {
@@ -30,8 +28,6 @@ const handleBlogRouter = (req,res) => {
 
     //新建博客
     if(method === 'POST' && req.path === '/api/blog/new'){
-        // const data = newBlog(req.body)
-        // return new SuccessModel(data)
         req.body.author = 'zhangsan'
         const result = newBlog(req.body)
         return result.then(data=>{
@@ -49,15 +45,12 @@ const handleBlogRouter = (req,res) => {
                 return new ErrorModel('更新失败')
             }
         })
-        
     }
 
     //删除博客
     if(method === 'POST' && req.path === '/api/blog/del'){
-        // const data = newBlog(req.body)
-        // return new SuccessModel(data)
         const author='lisi'
-        const result = updataBlog(id,author)
+        const result = delBlog(id,author)
         return result.then(val=>{
             if(val){
                 return new SuccessModel()
@@ -65,7 +58,6 @@ const handleBlogRouter = (req,res) => {
                 return new ErrorModel('删除失败')
             }
         })
-        
     }
 }
 

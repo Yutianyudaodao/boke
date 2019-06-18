@@ -1,7 +1,7 @@
-const mysql = reuqire('mysql')
-const { MYSQL_CONFIG } = reuqire('../config/db.js')
+const mysql = require('mysql')
+const { MYSQL_CONFIG } = require('../config/db.js')
 
-const connect = mysql.creatConnection(MYSQL_CONFIG)
+const connect = mysql.createConnection(MYSQL_CONFIG)
 connect.connect()
 
 //执行sql

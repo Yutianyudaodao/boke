@@ -1,15 +1,14 @@
 const { exec } = require('../db/mysql')
 
 const getlist = (author,keyword) => {
-    let spl = `select * from blogs where 1=1 `//1=1 做容错
+    let sql = `select * from blogs where 1=1 `//1=1 做容错
     if(author){
         sql += `and author='${author}' `
     }
     if(keyword){
         sql += `and title like '%${keyword}%' `
     }
-    sql +=`order by creatime desc;`
-
+    // sql +=`order by creatime desc;`
     return exec(sql)
 }
 
@@ -22,10 +21,9 @@ const getDetail = (id)=>{
 
 const newBlog = (blogData = {}) => {
     const {author,title,content} = blogData
-    const createTime = Date.now()
-
+    const createTime = Date.now();
     const sql = `
-        insert into blogs (author,titlt,content,createTime) value ('${author}','${title}','${content}','${createTime}',)
+        insert into blogs (author,title,content,createtime) value ('${author}','${title}','${content}','${createTime}')
     `
     return exec(sql).then(insertData=>{
         return {
